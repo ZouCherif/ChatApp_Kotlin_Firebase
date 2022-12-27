@@ -164,10 +164,11 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/ToRegister"
+            android:id="@+id/ToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abeezee"
+            android:padding="5dp"
             android:text="Login"
             android:textColor="@color/purple"
             android:textSize="18sp" />
