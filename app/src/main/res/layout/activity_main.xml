@@ -10,6 +10,7 @@
     android:paddingRight="40dp"
     tools:context=".MainActivity">
 
+
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
@@ -27,28 +28,35 @@
         app:layout_constraintBottom_toTopOf="@+id/passtxt"
         tools:layout_editor_absoluteX="40dp" />
 
-    <EditText
-        android:id="@+id/password"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordcontainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:drawablePadding="10dp"
-        android:drawableTint="#4CAF50"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:labelFor="@id/passtxt"
-        android:minHeight="48dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textSize="20sp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/signin"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:boxBackgroundColor="@color/background"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:labelFor="@id/passtxt"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="40dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="40dp"
         android:fontFamily="@font/abeezee"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -57,7 +65,7 @@
         android:text="Login"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/ForgotPass"
-        tools:layout_editor_absoluteX="40dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -105,12 +113,11 @@
         android:id="@+id/passtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:fontFamily="@font/abeezee"
         android:text="Password"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintBottom_toTopOf="@+id/passwordcontainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -119,7 +126,7 @@
         android:id="@+id/ForgotPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="40dp"
         android:fontFamily="@font/abeezee"
         android:text="Forgor Password?"
         android:textColor="@color/purple"
