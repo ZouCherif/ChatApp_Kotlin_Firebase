@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.chatapp.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
@@ -31,24 +33,38 @@ class MainActivity : AppCompatActivity() {
 
             if(email.isNotEmpty() && pass.isNotEmpty()){
                 firebaseAuth.signInWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener {
-                        if (it.isSuccessful) {
+                    .addOnSuccessListener {
+                        if (firebaseAuth.currentUser!!.isEmailVerified) {
                             Toast.makeText(this, "Succesfully signed in", Toast.LENGTH_SHORT).show()
                             val intent2 = Intent(this, ChatApp_Activity::class.java)
                             startActivity(intent2)
                             finish()
-                        } else {
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG)
-                                .show()
+                        }else{
+                            Toast.makeText(this, "Please check your email", Toast.LENGTH_SHORT).show()
+                            firebaseAuth.signOut()
                         }
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, it.message, Toast.LENGTH_LONG)
+                            .show()
                     }
             }else{
                 Toast.makeText(this, "Empty fields are not allowed !!", Toast.LENGTH_LONG).show()
             }
         }
+    }
 
-
-
-
+    override fun onStart() {
+        super.onStart()
+        val user = Firebase.auth.currentUser
+        if (user != null){
+            if (user.isEmailVerified) {
+                val intent2 = Intent(this, ChatApp_Activity::class.java)
+                startActivity(intent2)
+                finish()
+            }else{
+                Toast.makeText(this, "Please check your email", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
