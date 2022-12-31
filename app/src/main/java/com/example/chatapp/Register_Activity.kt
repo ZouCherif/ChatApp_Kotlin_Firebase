@@ -12,7 +12,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class Register_Activity : AppCompatActivity() {
-    private lateinit var binding:ActivityRegisterBinding
+    private lateinit var binding: ActivityRegisterBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private  lateinit var mDbRef: DatabaseReference
 
