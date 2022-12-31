@@ -15,6 +15,12 @@ class ChatApp_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -9,8 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.IgnoreExtraProperties
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class Register_Activity : AppCompatActivity() {
@@ -54,11 +52,6 @@ class Register_Activity : AppCompatActivity() {
         }
     }
 
-    @IgnoreExtraProperties
-    data class User(val username: String? = null, val email: String? = null, val uid: String? = null) {
-        // Null default values create a no-argument default constructor, which is needed
-        // for deserialization from a DataSnapshot.
-    }
 
     private fun addUserToDB(username: String, email: String, uid: String){
         mDbRef = FirebaseDatabase.getInstance("https://chat-app-fire-kt-default-rtdb.europe-west1.firebasedatabase.app/").getReference("users")
