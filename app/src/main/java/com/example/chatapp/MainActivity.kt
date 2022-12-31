@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-
         firebaseAuth = FirebaseAuth.getInstance()
         binding.signin.setOnClickListener{
             val email = binding.email.text.toString()
