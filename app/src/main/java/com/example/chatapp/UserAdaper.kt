@@ -24,7 +24,7 @@ class UserAdaper(val context: Context, val userList: ArrayList<User>): RecyclerV
         holder.itemView.setOnClickListener{
             val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra("name", currentUser.username)
-            intent.putExtra("uid", FirebaseAuth.getInstance().currentUser?.uid)
+            intent.putExtra("id", currentUser.uid)
             context.startActivity(intent)
         }
     }

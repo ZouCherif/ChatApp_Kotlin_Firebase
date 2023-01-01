@@ -37,6 +37,7 @@ class Register_Activity : AppCompatActivity() {
             if(email.isNotEmpty() && pass.isNotEmpty() && username.isNotEmpty()){
                firebaseAuth.createUserWithEmailAndPassword(email, pass)
                     .addOnSuccessListener {
+                        firebaseAuth.currentUser?.sendEmailVerification()
                         addUserToDB(username, email, firebaseAuth.currentUser?.uid!!)
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
