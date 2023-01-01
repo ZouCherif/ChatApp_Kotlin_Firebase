@@ -1,11 +1,13 @@
 package com.example.chatapp
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 
 class UserAdaper(val context: Context, val userList: ArrayList<User>): RecyclerView.Adapter<UserAdaper.UserViewholder>() {
 
@@ -18,6 +20,13 @@ class UserAdaper(val context: Context, val userList: ArrayList<User>): RecyclerV
         val currentUser = userList[position]
         holder.username.text = currentUser.username
         holder.id.text = currentUser.uid
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra("name", currentUser.username)
+            intent.putExtra("uid", FirebaseAuth.getInstance().currentUser?.uid)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
