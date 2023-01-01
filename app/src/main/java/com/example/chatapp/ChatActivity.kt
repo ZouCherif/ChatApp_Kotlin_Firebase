@@ -1,13 +1,11 @@
 package com.example.chatapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.chatapp.databinding.ActivityChatAppBinding
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatapp.databinding.ActivityChatBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class ChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
@@ -37,7 +35,26 @@ class ChatActivity : AppCompatActivity() {
         msgList = ArrayList()
         msgAdaper = MessageAdapter(this, msgList)
 
+        binding.chatRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.chatRecyclerView.adapter = msgAdaper
 
+
+        mDbRef.child("chats").child(senderRoom!!).child("messages")
+            .addValueEventListener(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    msgList.clear()
+
+                    for (postSnapshot in snapshot.children){
+                        val message = postSnapshot.getValue(Message::class.java)
+                        msgList.add(message!!)
+                    }
+                    msgAdaper.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
 
         binding.sendbtn.setOnClickListener{
             val msg = binding.messageBox.text.toString()
