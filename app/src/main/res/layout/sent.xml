@@ -13,7 +13,7 @@
             android:id="@+id/sentmsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:text="message sent"
             android:padding="10dp"
             android:fontFamily="@font/abeezee"

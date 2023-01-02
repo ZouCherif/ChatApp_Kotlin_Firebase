@@ -21,6 +21,8 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val name = intent.getStringExtra("name")
         val id = intent.getStringExtra("id")
 
@@ -67,5 +69,10 @@ class ChatActivity : AppCompatActivity() {
             binding.messageBox.setText("")
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
